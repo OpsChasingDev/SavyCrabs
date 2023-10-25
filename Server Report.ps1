@@ -1,7 +1,9 @@
-# get computer name and OS version
+# get computer name and os version
 $Computerinfo = Get-ComputerInfo | Select-Object CsDNSHostName, OsVersion
-$Computerinfo
 
 # get number of disks
 $Diskinfo = Get-Disk
-$Diskinfo.count
+
+# custom object for disk count
+$obj = [PSCustomObject]@{LogicalDiskCount = $Diskinfo.Count}
+Write-Output $obj
