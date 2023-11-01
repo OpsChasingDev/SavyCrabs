@@ -12,7 +12,7 @@ $obj = [PSCustomObject]@{
     LogicalDiskCount = $Diskinfo.Count
     ComputerName = $Computerinfo.CsDNSHostName
     OsVersion = $Computerinfo.OsVersion
-    'FreeSpace_GB'  = $FreeSpace.Free /1gb
+    'FreeSpace_GB'  = [MATH]::Round(($FreeSpace.Free /1gb),2)
 }
 
 Write-Output $obj
