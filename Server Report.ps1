@@ -18,11 +18,15 @@ foreach ($m in $MemoryCapacity) {
     $memorysum = $memorysum + $m.capacity
 }
 
-# custom object for disk count
+# get last boot up time
+$LastBootUp = Get-ComputerInfo
+
+# custom object for computer info
 $obj = [PSCustomObject]@{
     LogicalDiskCount = $Diskinfo.Count
     ComputerName = $Computerinfo.CsDNSHostName
     OsVersion = $Computerinfo.OsVersion
+    LastBootUp = $LastBootUp.OsLastBootUpTime
     FreeSpace_GB  = [MATH]::Round(($FreeSpace.Free / 1gb),2)
     CPUCore = $CPUCore.NumberofCores
     TotalMemory = [Math]::Round(($MemorySum / 1gb), 0)
